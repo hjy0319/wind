@@ -1,0 +1,13 @@
+<view class="container">
+	<view style="margin-top: 20px;">
+		<picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-31" bindchange="bindDateChange">
+			<view class="picker" style="display:flex;justify-content: center;align-items: center;">
+				<image style="height: 25px; width: 25px;" mode="aspectFill" src="../../images/buttons/date.png"> </image>
+				<input type='text' style="display:flex; width:260rpx;text-align:center;font-size:16px;" disabled="true" placeholder="选择日期" value='{{date}}'></input>
+			</view>
+		</picker>
+	</view>
+	<canvas canvas-id="lineCanvas" disable-scroll="true" style="width: 100%;height: 200px;margin-top: 5px;" bindtouchstart="touchHandler"></canvas>
+	<canvas canvas-id="columnCanvas" style="width: 100%;height: 200px;"></canvas>
+	<canvas canvas-id="pieCanvas" style="width: 100%;height: 260px;"></canvas>
+</view>

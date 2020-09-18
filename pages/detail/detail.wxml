@@ -1,0 +1,107 @@
+<view class="container">
+	<view class="form">
+		<view class="row">
+			<label for="">日期</label>
+			<text class="text color-gray">{{taskDate}}</text>
+		</view>
+		<view class="row">
+			<label for="">体重</label>
+			<text class="text color-gray">{{weight}} kg</text>
+		</view>
+
+		<view class="row">
+			<label for="">环比昨日</label>
+			<view wx:if="{{compareWeight > 0}}">
+				<text class="text color-red">{{compareWeight}} kg ⬆</text>
+			</view>
+			<view wx:elif="{{compareWeight == 0 || compareWeight == null}}">
+				<text class="text color-gray">-</text>
+			</view>
+			<view wx:else>
+				<text class="text color-green">{{compareWeight}} kg ⬇</text>
+			</view>
+		</view>
+
+		<view class="row">
+			<label style="display: flex;align-items:center;" for="">是否吃代餐<image wx:if="{{dietMealDay == true}}" style="width:25px;height:25px;align-items:center;" mode="aspectFill" src="../../images/tags/dietMeal.png"></image>
+			</label>
+			<view wx:if="{{dietMealFlag == 0 && dietMealDay == true}}">
+				<text class="text color-red">No</text>
+			</view>
+			<view wx:elif="{{dietMealFlag == 0 && dietMealDay == false}}">
+				<text class="text color-gray">No</text>
+			</view>
+			<view wx:elif="{{dietMealFlag == 1 && dietMealDay == true}}">
+				<text class="text color-gold">Yes</text>
+			</view>
+			<view wx:else>
+				<text class="text color-gray">Yes</text>
+			</view>
+		</view>
+
+		<view class="row">
+			<label style="display: flex;align-items:center;" for="">是否运动<image wx:if="{{sportsDay == true}}" style="width:25px;height:25px;align-items:center;" mode="aspectFill" src="../../images/tags/sports.png"></image></label>
+			<view wx:if="{{sportsFlag == 0 && sportsDay == true}}">
+				<text class="text color-red">No</text>
+			</view>
+			<view wx:elif="{{sportsFlag == 0 && sportsDay == false}}">
+				<text class="text color-gray">No</text>
+			</view>
+			<view wx:elif="{{sportsFlag == 1 && sportsDay == true}}">
+				<text class="text color-gold">Yes</text>
+			</view>
+			<view wx:else>
+				<text class="text color-gray">Yes</text>
+			</view>
+		</view>
+
+		<view class="row">
+			<label for="">出勤状态</label>
+			<view wx:if="{{taskStatus == 0}}">
+				<text class="text color-red">缺勤</text>
+			</view>
+			<view wx:else>
+				<text class="text color-gray">正常</text>
+			</view>
+		</view>
+
+		<view class="row">
+			<label for="">评分 </label>
+			<text class="text">
+				<text wx:if="{{grade == null || grade == 0}}"> 😡</text>
+				<block wx:for="{{grade}}" wx:key="star">
+					<text>😊</text>
+				</block>
+			</text>
+			<!-- <text class="text">⭐️⭐️⭐️⭐️⭐️</text> -->
+		</view>
+
+		<view class="row">
+			<label for="">收入</label>
+			<view wx:if="{{income == 0 || income == null}}">
+				<text class="text color-gray">￥0</text>
+			</view>
+			<view wx:else>
+				<text class="text color-gold">￥{{income}}</text>
+			</view>
+		</view>
+
+		<view class="row">
+			<label for="">罚款</label>
+			<view wx:if="{{fine == 0 || fine == null}}">
+				<text class="text color-gray">-</text>
+			</view>
+			<view wx:else>
+				<text class="text color-red">￥{{fine}}</text>
+			</view>
+		</view>
+	</view>
+	<!-- <view class="tag">
+		<view wx:if="{{dietMealDay == true}}">
+			<image style="width:35px;height:35px;" mode="aspectFill" src="../../images/tags/dietMeal.png"></image>
+		</view>
+		<view wx:if="{{sportsDay == true}}">
+			<image style="width:35px;height:35px;" mode="aspectFill" src="../../images/tags/sports.png"></image>
+		</view>
+	</view> -->
+</view>

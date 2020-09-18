@@ -1,0 +1,31 @@
+<view class="container">
+	<!-- <view class="tag">
+		<view wx:if="{{dietMealDay == true}}">
+			<image style="width:35px;height:35px;" mode="aspectFill" src="../../images/tags/dietMeal.png"></image>
+		</view>
+		<view wx:if="{{sportsDay == true}}">
+			<image style="width:35px;height:35px;" mode="aspectFill" src="../../images/tags/sports.png"></image>
+		</view>
+	</view> -->
+	<view class="form">
+		<view class="row">
+			<label for="">今日体重</label>
+			<input type='text' style="display:flex; width:90rpx;" placeholder="kg" bindinput="getWeightValue" value='{{weight}}'></input>
+		</view>
+
+		<view class="row">
+			<label style="display: flex;align-items:center;" for="">是否吃代餐<image wx:if="{{dietMealDay == true}}" style="width:25px;height:25px;align-items:center;" mode="aspectFill" src="../../images/tags/dietMeal.png"></image>
+			</label>
+			<switch class="switch" bindchange="dietMealChange" color="#279efd" checked='{{dietMealFlag}}'></switch>
+		</view>
+
+		<view class="row">
+			<label style="display: flex;align-items:center;" for="">是否运动<image wx:if="{{sportsDay == true}}" style="width:25px;height:25px;align-items:center;" mode="aspectFill" src="../../images/tags/sports.png"></image>
+			</label>
+			<switch class="switch" bindchange="sportsChange" color="#279efd" checked='{{sportsFlag}}'></switch>
+		</view>
+	</view>
+	<view class="combtn" data-url="../addNewAddress/addNewAddress" bindtap="save">
+		保存
+	</view>
+</view>

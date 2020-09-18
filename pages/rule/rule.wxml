@@ -1,0 +1,56 @@
+<view class="container">
+	<view class="form">
+		<view class="row">
+			<label for="">每日量体重</label>
+		</view>
+		<view class="row">
+			<label for="">完成</label>
+			<text class="text color-gold">+￥{{dayRewardSignIn}}</text>
+		</view>
+		<view class="row">
+			<label for="">缺勤</label>
+			<text class="text color-red">-￥{{dayFineSignIn}}</text>
+		</view>
+	</view>
+	<view class="form">
+		<view class="row">
+			<label for="">吃代餐</label>
+			<text class="text color-gray">每周{{fixedDayDietMeal}}</text>
+		</view>
+		<view class="row">
+			<label for="">完成</label>
+			<text class="text color-gold">+￥{{dayRewardDietMeal}}</text>
+		</view>
+		<view class="row">
+			<label for="">缺勤</label>
+			<text class="text color-red">-￥{{dayFineDietMeal}}</text>
+		</view>
+	</view>
+	<view class="form">
+		<view class="row">
+			<label for="">运动</label>
+			<text class="text color-gray">每周{{fixedDaySports}}</text>
+		</view>
+		<view class="row">
+			<label for="">完成</label>
+			<text class="text color-gold">+￥{{dayRewardSports}}</text>
+		</view>
+		<view class="row">
+			<label for="">缺勤</label>
+			<text class="text color-red">-￥{{dayFineSports}}</text>
+		</view>
+	</view>
+  <view class="form">
+		<view class="row">
+			<label for="">额外奖励</label>
+		</view>
+		<view class="row">
+			<label for="">全勤奖</label>
+			<text class="text color-gold">+￥{{weekRewardPersevere}}</text>
+		</view>
+		<view class="row">
+			<label for="">进步奖</label>
+			<text class="text color-gold">+￥{{weekRewardProgress}}</text>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,82 @@
+<!-- <view class="header">
+		<view class="profile">
+			<view class="description">
+				<view class="item">
+					<view style="margin-right:5px">{{userInfo.nickName}} 欢迎回来！</view>
+				</view>
+			</view>
+			<image class="add" mode="aspectFill" src="../../images/buttons/edit.png" bindtap="edit"></image>
+		</view>
+	</view> -->
+
+<view class="header">
+	<view style="margin-left: 15px;">
+		<picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-31" bindchange="bindDateChange">
+			<view class="picker" style="display:flex;justify-content: center;align-items: center;">
+				<image style="height: 25px; width: 25px;" mode="aspectFill" src="../../images/buttons/date.png"> </image>
+				<input type='text' style="display:flex; width:260rpx;text-align: center;" disabled="true" placeholder="选择日期" value='{{date}}'></input>
+			</view>
+		</picker>
+	</view>
+	<image style="width:35px;height:35px;margin-right: 15px;" mode="aspectFill" src="../../images/buttons/edit.png" bindtap="edit"></image>
+</view>
+<view class="divLine"></view>
+
+
+
+<!-- 礼品列表 -->
+<scroll-view scroll-y bindscrolltolower="loadPage" bindscrolltoupper="" class='giftListView'>
+	<!-- <view wx:if="{{list == null || list.length == 0}}" style="display:flex;justify-content: center; color: #635f5f; margin-top: 15px;">
+		没有记录
+	</view> -->
+	<block wx:for="{{list}}" wx:key="task">
+		<!-- 每个cell -->
+		<view class='item' bindtap='detail' data-item="{{item}}" data-id="{{item.taskCode}}">
+
+			<!-- 产品图片 -->
+			<view class='iconImageView'>
+				<view wx:if="{{item.weekDayNum == 1}}">
+					<image class='iconImage' src="../../images/icons/Mon.png" mode='aspectFit'></image>
+				</view>
+				<view wx:elif="{{item.weekDayNum == 2}}">
+					<image class='iconImage' src="../../images/icons/Tues.png" mode='aspectFit'></image>
+				</view>
+				<view wx:elif="{{item.weekDayNum == 3}}">
+					<image class='iconImage' src="../../images/icons/Wed.png" mode='aspectFit'></image>
+				</view>
+				<view wx:elif="{{item.weekDayNum == 4}}">
+					<image class='iconImage' src="../../images/icons/Thur.png" mode='aspectFit'></image>
+				</view>
+				<view wx:elif="{{item.weekDayNum == 5}}">
+					<image class='iconImage' src="../../images/icons/Fri.png" mode='aspectFit'></image>
+				</view>
+				<view wx:elif="{{item.weekDayNum == 6}}">
+					<image class='iconImage' src="../../images/icons/Sat.png" mode='aspectFit'></image>
+				</view>
+				<view wx:else>
+					<image class='iconImage' src="../../images/icons/Sun.png" mode='aspectFit'></image>
+				</view>
+			</view>
+
+			<!-- 产品名称 -->
+			<view class='productNameView'>
+				<text class='productNameText' style="color:	#808080">{{item.taskDate}}</text>
+			</view>
+
+			<!-- 需要的积分 -->
+			<view class='needScoreView'>
+				<text class='needSocreText'>[￥{{item.income}}]</text>
+			</view>
+
+			<!-- 具体产品 -->
+			<view class='productDesView'>
+				<view wx:if="{{item.grade == null || item.grade == 0}}">
+					<text>😡</text>
+				</view>
+				<block wx:for="{{item.grade}}" wx:key="star">
+					<text>😊</text>
+				</block>
+			</view>
+		</view>
+	</block>
+</scroll-view>

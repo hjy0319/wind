@@ -1,0 +1,50 @@
+<!--index.wxml-->
+<view class="container">
+	<view class="userinfo">
+		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+		<block wx:else>
+			<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+		</block>
+	</view>
+	<!-- <view class="userinfo">
+
+		<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+	</view> -->
+	<view style="margin-top: 100px;">
+		<image style="height: 85px; width: 85px;" mode="aspectFill" src="../../images/buttons/rule.png" bindtap="rule"></image>
+	</view>
+
+	<!--一个全屏模态对话框-->
+	<!-- <view class="modal" style="{{modalShowStyle}}">
+		<view class="dialog">
+			<view class="modal-title" style="display:flex;justify-content:center;align-items:center;">
+				减肥激励计划
+			</view>
+			<scroll-view scroll-y class="modal-item" style="margin:0 auto;width:100%;">
+				<view  style="margin:0 auto;width:85%;">
+					撒啊啊啊啊啊啊啊啊啊啊啊啊啊
+					撒啊啊啊啊啊啊啊啊啊啊啊啊啊
+					腹股沟管过过过过过过过过过过过过过过过过过过过过
+					撒啊啊啊啊啊啊啊啊啊啊啊啊啊
+					撒啊啊啊啊啊啊啊啊啊啊啊啊啊
+					方法方法付付付付付付付付付付付付
+					过过过过过过过过过过过过过过过过过过过
+					撒啊啊啊啊啊啊啊啊啊啊啊啊啊
+					撒啊啊啊啊啊啊啊啊啊啊啊啊啊
+					方法方法付付付付付付付付付付付付
+          撒啊啊啊啊啊啊啊啊啊啊啊啊啊
+					方法方法付付付付付付付付付付付付
+					过过过过过过过过过过过过过过过过过过过
+					撒啊啊啊啊啊啊啊啊啊啊啊啊啊
+					撒啊啊啊啊啊啊啊啊啊啊啊啊啊
+					方法方法付付付付付付付付付付付付
+				</view>
+			</scroll-view>
+			<view class="modal-button" style="width:100%" >
+				<view bindtap="closeButton">关闭</view>
+			</view>
+		</view>
+	</view> -->
+</view>

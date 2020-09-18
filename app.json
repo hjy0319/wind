@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/auth/auth",
+    "pages/task/task",
+    "pages/edit/edit",
+    "pages/detail/detail",
+    "pages/statistics/statistics",
+    "pages/income/income",
+    "pages/bill/bill",
+    "pages/rule/rule"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#6495ED",
+    "navigationBarTitleText": "Only Love",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#858585",
+    "selectedColor": "#39b5de",
+    "backgroundColor": "#F8F8FF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/buttons/home.png",
+        "selectedIconPath": "images/buttons/homeGL.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/task/task",
+        "iconPath": "images/buttons/task.png",
+        "selectedIconPath": "images/buttons/taskGL.png",
+        "text": "任务"
+      },
+      {
+        "pagePath": "pages/statistics/statistics",
+        "iconPath": "images/buttons/trend.png",
+        "selectedIconPath": "images/buttons/trendGL.png",
+        "text": "统计"
+      },
+      {
+        "pagePath": "pages/income/income",
+        "iconPath": "images/buttons/mine.png",
+        "selectedIconPath": "images/buttons/mineGL.png",
+        "text": "收入"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

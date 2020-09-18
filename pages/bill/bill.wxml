@@ -1,0 +1,23 @@
+<view style="margin-top: 20px;">
+	<picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-31" bindchange="bindDateChange">
+		<view class="picker" style="display:flex;justify-content: center;align-items: center;">
+			<image style="height: 25px; width: 25px;" mode="aspectFill" src="../../images/buttons/date.png"> </image>
+			<input type='text' style="display:flex; width:260rpx;text-align:center;font-size:16px;" disabled="true" placeholder="选择日期" value='{{date}}'></input>
+		</view>
+	</picker>
+</view>
+<view class="divLine"></view>
+
+<scroll-view scroll-y bindscrolltolower="loadPage" bindscrolltoupper="" style="margin-top:30px">
+	<block wx:for="{{list}}" wx:key="bill">
+		<!-- 每个cell -->
+		<view class="row" data-item="{{item}}" data-id="{{item.id}}">
+      <image wx:if="{{item.billType == 1}}" style="margin-left:30px; height: 30px; width: 30px;" mode="aspectFill" src="../../images/icons/income.png"></image>
+      <image wx:if="{{item.billType == 2}}" style="margin-left:30px; height: 30px; width: 30px;" mode="aspectFill" src="../../images/icons/fine.png"></image>
+			<image wx:if="{{item.billType == 3}}" style="margin-left:30px; height: 30px; width: 30px;" mode="aspectFill" src="../../images/icons/cash.png"></image>
+			<text style="color:	#808080">￥{{item.money}}</text>
+			<text style="margin-right:30px;color:	#808080">{{item.createTimeStr}}</text>
+		</view>
+	</block>
+</scroll-view>
+<!-- </view> -->
