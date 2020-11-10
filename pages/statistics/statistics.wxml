@@ -1,5 +1,5 @@
-<view class="container">
-	<view style="margin-top: 20px;">
+<view class="header">
+	<view>
 		<picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-31" bindchange="bindDateChange">
 			<view class="picker" style="display:flex;justify-content: center;align-items: center;">
 				<image style="height: 25px; width: 25px;" mode="aspectFill" src="../../images/buttons/date.png"> </image>
@@ -7,7 +7,26 @@
 			</view>
 		</picker>
 	</view>
-	<canvas canvas-id="lineCanvas" disable-scroll="true" style="width: 100%;height: 200px;margin-top: 5px;" bindtouchstart="touchHandler"></canvas>
-	<canvas canvas-id="columnCanvas" style="width: 100%;height: 200px;"></canvas>
-	<canvas canvas-id="pieCanvas" style="width: 100%;height: 260px;"></canvas>
+</view>
+<view class="divLine"></view>
+
+<view class="tab">
+	<image style="height: 30px; width: 30px;" mode="aspectFill" src="../../images/buttons/{{showLineFlag?'lineGL.png':'line.png'}}" bindtap="showLine"> </image>
+	<image style="height: 30px; width: 30px;" mode="aspectFill" src="../../images/buttons/{{showColumnFlag?'columnGL.png':'column.png'}}" bindtap="showColumn"> </image>
+	<image style="height: 35px; width: 35px;" mode="aspectFill" src="../../images/buttons/{{showPieFlag?'pieGL.png':'pie.png'}}" bindtap="showPie"> </image>
+</view>
+<view class="chart">
+	<view class="{{showLineFlag?'show':'hide'}}">
+		<label class="title">双周体重趋势</label>
+		<canvas canvas-id="lineCanvas" disable-scroll="true" style="width: 100%;height: 400px;" bindtouchstart="touchHandler"></canvas>
+	</view>
+	<view class="{{showColumnFlag?'show':'hide'}}">
+		<label class="title">当周基本收入与罚款</label>
+		<canvas canvas-id="columnCanvas" style="width: 100%;height: 400px;"></canvas>
+	</view>
+	<view class="{{showPieFlag?'show':'hide'}}">
+		<label class="title">当周总收益情况</label>
+		<canvas canvas-id="pieCanvas" style="width: 100%;height: 300px;"></canvas>
+	</view>
+
 </view>

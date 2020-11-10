@@ -2,15 +2,19 @@
 App({
   globalData: {
     userInfo: null,
-    userCode: '1',
-    // URL: 'http://localhost:8081'
-    URL: 'http://123.57.59.221:8081/'
+    encryptedData: null,
+    iv: null,
+    code: null,
+    userCode: null,
+    // URL: 'https://localhost:8081'
+    URL: 'https://www.5qel4c.cn:8081'
   },
   onLaunch: function () {
 
     // 登录
     wx.login({
       success: res => {
+        this.globalData.code = res.code;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
@@ -24,7 +28,8 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
+              this.globalData.userInfo = res.userInfo;
+              this.getUserCode(res.userInfo);
 
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -34,15 +39,10 @@ App({
             }
           })
 
-        } 
-        // else {
-        //   // 未授权，跳转到授权页面
-        //   wx.reLaunch({
-        //     url: '/pages/auth/auth',
-        //   })
-        // }
+        }
       }
-    })
+    });
+
   },
 
   /**
@@ -82,5 +82,24 @@ App({
       icon: icon,
       duration: duration
     });
+  },
+  getUserCode(user) {
+    this.wxRequest('POST', '/user/userCode', user, (res) => {
+      if (res.status == 'success') {
+        if (res.data != null) {
+          this.globalData.userCode = res.data;
+        }
+      }
+    }, (err) => {
+      app.wxShowToast('服务器已关闭', 'none', 2000);
+    })
+  },
+  checkLogin(user) {
+    if (user) {
+      return true;
+    } else {
+      this.wxShowToast('请先授权登录', 'none', 2000);
+      return false;
+    }
   }
 })

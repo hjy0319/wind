@@ -11,7 +11,7 @@
 
 .tag {
   flex-direction: row;
-  justify-content:flex-start;
+  justify-content: flex-start;
   display: flex;
   align-items: center;
   width: 90%;
@@ -25,43 +25,46 @@
   width: 90%;
 }
 
-.ipt-wrap{
+.ipt-wrap {
   min-height: 100rpx;
   line-height: 100rpx;
   display: flex;
   align-items: center;
 }
-.ipt-wrap label{
+
+.ipt-wrap label {
   min-width: 120rpx;
 }
 
 .row {
   min-height: 100rpx;
   line-height: 100rpx;
-  border-bottom:1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
   align-items: center;
   display: flex;
   justify-content: space-between;
 }
 
 /*swtich整体大小*/
-.wx-switch-input{
-  width:82rpx !important;
-  height:40rpx !important;
+.wx-switch-input {
+  width: 82rpx !important;
+  height: 40rpx !important;
 }
+
 /*白色样式（false的样式）*/
-.wx-switch-input::before{
-  width:80rpx !important;
+.wx-switch-input::before {
+  width: 80rpx !important;
   height: 36rpx !important;
 }
+
 /*绿色样式（true的样式）*/
-.wx-switch-input::after{
+.wx-switch-input::after {
   width: 40rpx !important;
   height: 36rpx !important;
 }
 
-.combtn{
-  height: 100rpx;
+.combtn {
+  height: 120rpx;
   text-align: center;
   line-height: 100rpx;
   margin: 0 auto;
@@ -70,7 +73,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 16px;
+  font-size: 18px;
   color: #fff;
   width: 100%;
   background: #229dfe;

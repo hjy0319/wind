@@ -1,23 +1,36 @@
-<!--index.wxml-->
-<view class="container">
-	<view class="userinfo">
-		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-		<block wx:else>
-			<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
-		</block>
-	</view>
-	<!-- <view class="userinfo">
+	<view class="header">
+		<view>
+			<view class="location">
+				{{location}}
+			</view>
+			<view class="weather">
+				<view class="temperature">
+					{{temp}}
+				</view>
+				<view style="font-size: 50rpx;">
+					{{text}}
+				</view>
+				</view>
+			</view>
+			<view>
+				<image style="height: 120px; width: 120px;" mode="aspectFill" src='../../images/weather/{{icon}}.png'></image>
+			</view>
+		</view>
+		<view class="container">
+			<view class="userinfo">
+				<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 请授权登录 </button>
+				<block wx:else>
+					<image bindtap="" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+					<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+				</block>
+			</view>
 
-		<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
-	</view> -->
-	<view style="margin-top: 100px;">
-		<image style="height: 85px; width: 85px;" mode="aspectFill" src="../../images/buttons/rule.png" bindtap="rule"></image>
-	</view>
+			<view style="position:fixed; top: 450px;">
+				<image style="height: 85px; width: 85px;" mode="aspectFill" src="../../images/buttons/rule.png" bindtap="rule"></image>
+			</view>
 
-	<!--一个全屏模态对话框-->
-	<!-- <view class="modal" style="{{modalShowStyle}}">
+			<!--一个全屏模态对话框-->
+			<!-- <view class="modal" style="{{modalShowStyle}}">
 		<view class="dialog">
 			<view class="modal-title" style="display:flex;justify-content:center;align-items:center;">
 				减肥激励计划
@@ -47,4 +60,4 @@
 			</view>
 		</view>
 	</view> -->
-</view>
+		</view>

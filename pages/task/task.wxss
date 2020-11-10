@@ -1,64 +1,22 @@
 .header {
-  position:fixed; 
-  top:0rpx;
+  position: fixed;
+  top: 0rpx;
   width: 750rpx;
   height: 125rpx;
-  flex-wrap:nowrap;
-  display:flex;
-  justify-content:space-between;
+  flex-wrap: nowrap;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: #F8F8FF;
 }
 
-.divLine{  
-  position:fixed; 
-  top:125rpx;
+.divLine {
+  position: fixed;
+  top: 125rpx;
   width: 100%;
   height: 5rpx;
   background: #C0C0C0;
- }
-
-/* .list {
-  position: relative;
-  margin-top: 5rpx;
-  margin-bottom: 5rpx;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
-  padding-left: 0rpx;
-  padding-right: 0rpx;
-  border: #ddd 1px solid;
 }
-
-.table{
-  height: 100%;
-  display: table;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
-  text-align: center;
-}
-
-.column{
-  width: 5rem;
-  display: table-cell;
-}
-
-.link-column{
-  width: 3rem;
-  display: table-cell;
-}
-
-.link{
-  color: blue;
-  display: inline-table;
-}
-
-.avatar {
-  width: 50px;
-  height: 50px;
-} */
 
 /* 礼品列表 */
 .giftListView {
@@ -69,15 +27,17 @@
   position: absolute;
 
 }
+
 /* cell */
 .item {
   width: 100%;
   height: 300rpx;
   position: relative;
   /* background-color: green; */
-    border-bottom: 2px solid #dadada;
- 
+  border-bottom: 2px solid #dadada;
+
 }
+
 /* cell 产品图 */
 .iconImageView {
   width: 200rpx;
@@ -87,41 +47,41 @@
   /* background-color:orange; */
   position: absolute;
 }
+
 .iconImage {
   width: 180rpx;
   height: 180rpx;
 }
 
-/* 产品名 */
-.productNameView {
+.taskDateView {
   top: 50rpx;
   left: 280rpx;
   right: 130rpx;
   height: 50rpx;
   position: absolute;
 }
-.productNameText {
+
+.taskDateText {
   color: rgb(32, 27, 27);
   font-size: 35rpx;
   white-space: nowrap;
-    text-overflow:ellipsis;
+  text-overflow: ellipsis;
 }
 
-/* 需要积分数 */
-.needScoreView {
+.incomeView {
   top: 50rpx;
-  right: 10rpx;
+  right: 15rpx;
   height: 50rpx;
   width: 100rpx;
   position: absolute;
 }
-.needSocreText {
-  color:gold;
-  font-size: 25rpx;
+
+.incomeText {
+  color: #ffbb00;
+  font-size: 30rpx;
 }
 
-/* 具体产品 */
-.productDesView {
+.gradeView {
   top: 120rpx;
   height: 50rpx;
   left: 280rpx;
@@ -129,29 +89,14 @@
   /* background-color: gray; */
   position: absolute;
 }
-.productDesText {
+
+.gradeText {
   font-size: 32rpx;
   color: gray;
   display: block;
   /* line-height: 50rpx; */
-   overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-   /* -webkit-line-clamp:1;  */
+  /* -webkit-line-clamp:1;  */
 }
-
-/* 剩余数 */
-/* .numView {
-  top: 190rpx;
-  height: 50rpx;
-  left: 280rpx;
-  right: 150rpx;
-  position:absolute;
-}
-.numText {
-  font-size: 25rpx;
-  color: rgb(230, 204, 140);
-   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-} */

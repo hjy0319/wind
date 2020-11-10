@@ -28,28 +28,28 @@ Page({
     var that = this;
     app.wxRequest('GET', '/task/toRule', null, (res) => {
       if (res.status == 'success') {
-          if (res.data != null) {
-            that.setData({
-              dayRewardSignIn: res.data.dayRewardSignIn,
-              dayRewardDietMeal: res.data.dayRewardDietMeal,
-              dayRewardSports: res.data.dayRewardSports,
-          
-              dayFineSignIn: res.data.dayFineSignIn,
-              dayFineDietMeal: res.data.dayFineDietMeal,
-              dayFineSports: res.data.dayFineSports,
-          
-              fixedDayDietMeal: res.data.fixedDayDietMeal,
-              fixedDaySports: res.data.fixedDaySports,
-          
-              weekRewardPersevere: res.data.weekRewardPersevere,
-              weekRewardProgress: res.data.weekRewardProgress
-            });
+        if (res.data != null) {
+          that.setData({
+            dayRewardSignIn: res.data.dayRewardSignIn,
+            dayRewardDietMeal: res.data.dayRewardDietMeal,
+            dayRewardSports: res.data.dayRewardSports,
 
-          }
+            dayFineSignIn: res.data.dayFineSignIn,
+            dayFineDietMeal: res.data.dayFineDietMeal,
+            dayFineSports: res.data.dayFineSports,
+
+            fixedDayDietMeal: res.data.fixedDayDietMeal,
+            fixedDaySports: res.data.fixedDaySports,
+
+            weekRewardPersevere: res.data.weekRewardPersevere,
+            weekRewardProgress: res.data.weekRewardProgress
+          });
+
+        }
       }
-  }, (err) => {
+    }, (err) => {
       app.wxShowToast('服务器已关闭', 'none', 2000);
-  });
+    });
   },
 
   /**

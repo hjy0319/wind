@@ -6,8 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: app.globalData.userInfo,
-    userCode: app.globalData.userCode,
+    needReload: true,
     pageNum: 1,
     pageSize: 4,
     total: 0,
@@ -17,11 +16,12 @@ Page({
 
   taskPaging: function () {
     var param = {
-      userCode: this.data.userCode,
+      userCode: app.globalData.userCode,
       taskDate: this.data.taskDate,
       pageNum: this.data.pageNum,
       pageSize: this.data.pageSize
     }
+
     app.wxRequest('POST', '/task/taskPaging', param, (res) => {
       if (res.status == 'success') {
         if (res.data != null) {
@@ -45,7 +45,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.init('');
+    if (app.checkLogin(app.globalData.userInfo)) {
+      this.init('');
+      this.setData({
+        needReload: false
+      });
+    } else {
+      this.setData({
+        needReload: true
+      });
+    }
+  },
+
+  onShow: function (options) {
+    if (app.checkLogin(app.globalData.userInfo) && this.data.needReload) {
+      this.init('');
+      this.setData({
+        needReload: false
+      });
+    }
   },
   init: function (taskDate) {
     this.setData({
@@ -93,7 +111,6 @@ Page({
     });
   },
   bindDateChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
       date: e.detail.value
     });

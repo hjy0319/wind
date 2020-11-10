@@ -5,10 +5,15 @@ var columnChart = null;
 var pieChart = null;
 Page({
     data: {
-        userCode: app.globalData.userCode
+        needReload: true,
+        lineIcon: 'homeGL.png',
+        columnIcon: 'mine.png',
+        pieIcon: 'task.png',
+        showLineFlag: true,
+        showColumnFlag: false,
+        showPieFlag: false
     },
     touchHandler: function (e) {
-        console.log(lineChart.getCurrentDataIndex(e));
         lineChart.showToolTip(e, {
             // background: '#7cb5ec',
             format: function (item, category) {
@@ -21,28 +26,43 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var that = this;
-        that.init('');
+        if (app.checkLogin(app.globalData.userInfo)) {
+            this.init('');
+            this.setData({
+                needReload: false
+            });
+        } else {
+            this.setData({
+                needReload: true
+            });
+        }
     },
 
     onShow: function (e) {
-
+        if (app.checkLogin(app.globalData.userInfo) && this.data.needReload) {
+            this.init('');
+            this.setData({
+                needReload: false
+            });
+        }
     },
     init: function (date) {
         var that = this;
-        app.wxRequest('GET', '/task/statistics?userCode=' + this.data.userCode + '&taskDate=' + date, null, (res) => {
+        app.wxRequest('GET', '/task/statistics?userCode=' + app.globalData.userCode + '&taskDate=' + date, null, (res) => {
             if (res.status == 'success') {
                 if (res.data != null) {
 
-                    // console.log(that.finishLineData(res.data.currentWeekWeight));
-                    // console.log(that.finishLineData(res.data.lastWeekWeight));
                     that.initLines(
                         that.getWeekWeights(res.data.currentWeekTask),
-                        that.getWeekWeights(res.data.lastWeekTask));
+                        that.getWeekWeights(res.data.lastWeekTask),
+                        res.data.currentWeekDateRange,
+                        res.data.lastWeekDateRange);
 
                     that.initColumns(
                         that.getWeekIncome(res.data.currentWeekTask),
-                        that.getWeekFine(res.data.currentWeekTask));
+                        that.getWeekFine(res.data.currentWeekTask),
+                        res.data.categories);
+
                     that.initPie(res.data.weekIncome.weekIncome,
                         res.data.weekIncome.persevereReward,
                         res.data.weekIncome.progressReward,
@@ -54,7 +74,7 @@ Page({
             app.wxShowToast('服务器已关闭', 'none', 2000);
         });
     },
-    initLines: function (currentWeekWeight, lastWeekWeight) {
+    initLines: function (currentWeekWeight, lastWeekWeight, currentWeekDateRange, lastWeekDateRange) {
         var windowWidth = 320;
         try {
             var res = wx.getSystemInfoSync();
@@ -65,15 +85,16 @@ Page({
         lineChart = new wxCharts({
             canvasId: 'lineCanvas',
             type: 'line',
+            // categories: ['一(5&28)', '二(6&29)', '三(7&30)', '四(8&1)', '五(9&2)', '六(10&3)', '日(11&4)'],
             categories: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
             animation: true,
             // background: '#f5f5f5',
             series: [{
-                name: '本周',
+                name: '本周(' + currentWeekDateRange + ')' ,
                 data: currentWeekWeight,
 
             }, {
-                name: '上周',
+                name: '上周(' + lastWeekDateRange + ')',
                 data: lastWeekWeight,
 
             }],
@@ -95,7 +116,11 @@ Page({
         });
     },
 
-    initColumns: function (currentWeekIncome, currentWeekFine) {
+    initColumns: function (currentWeekIncome, currentWeekFine, categories) {
+        console.log(categories);
+        if (categories == undefined) {
+            categories = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+        }
         var windowWidth = 320;
         try {
             var res = wx.getSystemInfoSync();
@@ -108,7 +133,7 @@ Page({
             canvasId: 'columnCanvas',
             type: 'column',
             animation: true,
-            categories: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+            categories: categories,
             series: [{
                     name: '收入',
                     data: currentWeekIncome
@@ -138,7 +163,6 @@ Page({
         });
     },
     initPie: function (weekIncome, persevereReward, progressReward, weekFine) {
-        console.log(weekIncome + ' ' + persevereReward + ' ' + progressReward + ' ' + weekFine)
         var windowWidth = 320;
         try {
             var res = wx.getSystemInfoSync();
@@ -174,10 +198,12 @@ Page({
         });
     },
     getWeekWeights: function (a) {
-
+        if (a == null || a == 'undefined' || a.length == 0) {
+            return ['', null, null, null, null, null, null];
+        }
         var w = [];
         for (var i = 0; i < 7; i++) {
-            if (a == null || a.length <= i) {
+            if (a.length <= i) {
                 w[i] = null;
             } else {
                 w[i] = a[i].weight;
@@ -222,11 +248,31 @@ Page({
         return a;
     },
     bindDateChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value);
         this.setData({
             date: e.detail.value
         });
         this.init(e.detail.value);
     },
+    showLine: function () {
+        this.setData({
+            showLineFlag: true,
+            showColumnFlag: false,
+            showPieFlag: false
+        });
+    },
+    showColumn: function () {
+        this.setData({
+            showLineFlag: false,
+            showColumnFlag: true,
+            showPieFlag: false
+        });
+    },
+    showPie: function () {
+        this.setData({
+            showLineFlag: false,
+            showColumnFlag: false,
+            showPieFlag: true
+        });
+    }
 
 });

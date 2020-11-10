@@ -10,7 +10,7 @@ Page({
     userCode: app.globalData.userCode
   },
   onLoad: function () {
-    app.wxRequest('GET', '/task/toEdit?userCode=' + this.data.userCode, null, (res) => {
+    app.wxRequest('GET', '/task/toEdit?userCode=' + app.globalData.userCode, null, (res) => {
       if (res.status == 'success') {
         if (res.data != null) {
           this.setData({
@@ -18,7 +18,8 @@ Page({
             dietMealFlag: res.data.dietMealFlag,
             sportsFlag: res.data.sportsFlag,
             dietMealDay: res.data.dietMealDay,
-            sportsDay: res.data.sportsDay
+            sportsDay: res.data.sportsDay,
+            userCode: app.globalData.userCode
           });
         }
       }
@@ -81,12 +82,14 @@ Page({
         wx.switchTab({
           url: '../task/task'
         });
-        
+
         var pages = getCurrentPages();
         // var currPage = pages[pages.length - 1]; //当前页面
         var prevPage = pages[pages.length - 2]; //上一个页面
-        prevPage.onLoad(); //刷新方法
         app.wxShowToast('保存成功', 'success', 2000);
+        setTimeout(function () {
+          prevPage.onLoad(); //刷新方法
+        }, 2000);
       } else {
         app.wxShowToast('保存失败', 'none', 2000);
       }

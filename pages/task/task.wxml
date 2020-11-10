@@ -1,14 +1,3 @@
-<!-- <view class="header">
-		<view class="profile">
-			<view class="description">
-				<view class="item">
-					<view style="margin-right:5px">{{userInfo.nickName}} 欢迎回来！</view>
-				</view>
-			</view>
-			<image class="add" mode="aspectFill" src="../../images/buttons/edit.png" bindtap="edit"></image>
-		</view>
-	</view> -->
-
 <view class="header">
 	<view style="margin-left: 15px;">
 		<picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-31" bindchange="bindDateChange">
@@ -22,9 +11,6 @@
 </view>
 <view class="divLine"></view>
 
-
-
-<!-- 礼品列表 -->
 <scroll-view scroll-y bindscrolltolower="loadPage" bindscrolltoupper="" class='giftListView'>
 	<!-- <view wx:if="{{list == null || list.length == 0}}" style="display:flex;justify-content: center; color: #635f5f; margin-top: 15px;">
 		没有记录
@@ -32,8 +18,6 @@
 	<block wx:for="{{list}}" wx:key="task">
 		<!-- 每个cell -->
 		<view class='item' bindtap='detail' data-item="{{item}}" data-id="{{item.taskCode}}">
-
-			<!-- 产品图片 -->
 			<view class='iconImageView'>
 				<view wx:if="{{item.weekDayNum == 1}}">
 					<image class='iconImage' src="../../images/icons/Mon.png" mode='aspectFit'></image>
@@ -58,20 +42,20 @@
 				</view>
 			</view>
 
-			<!-- 产品名称 -->
-			<view class='productNameView'>
-				<text class='productNameText' style="color:	#808080">{{item.taskDate}}</text>
+			<view class='taskDateView'>
+				<text class='taskDateText' style="color:#808080">{{item.taskDate}}</text>
 			</view>
 
-			<!-- 需要的积分 -->
-			<view class='needScoreView'>
-				<text class='needSocreText'>[￥{{item.income}}]</text>
+			<view wx:if="{{item.income >= 0}}" class='incomeView'>
+				<text class='incomeText'>[￥{{item.income}}]</text>
+			</view>
+			<view wx:else class='incomeView'>
+				<text class='incomeText' style="color:red">[￥{{item.income}}]</text>
 			</view>
 
-			<!-- 具体产品 -->
-			<view class='productDesView'>
+			<view class='gradeView'>
 				<view wx:if="{{item.grade == null || item.grade == 0}}">
-					<text>😡</text>
+					<text>😭</text>
 				</view>
 				<block wx:for="{{item.grade}}" wx:key="star">
 					<text>😊</text>

@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userCode: app.globalData.userCode,
     pageNum: 1,
     pageSize: 10,
     total: 0,
@@ -16,7 +15,7 @@ Page({
 
   billPaging: function () {
     var param = {
-      userCode: this.data.userCode,
+      userCode: app.globalData.userCode,
       billDate: this.data.billDate,
       pageNum: this.data.pageNum,
       pageSize: this.data.pageSize
@@ -76,7 +75,6 @@ Page({
   },
 
   bindDateChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
       date: e.detail.value
     });

@@ -8,11 +8,17 @@
     "pages/statistics/statistics",
     "pages/income/income",
     "pages/bill/bill",
-    "pages/rule/rule"
+    "pages/rule/rule",
+    "pages/trend/trend"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于当前天气信息的展示"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#6495ED",
+    "navigationBarBackgroundColor": "#1580da",
     "navigationBarTitleText": "Only Love",
     "navigationBarTextStyle": "white"
   },
@@ -35,7 +41,7 @@
         "text": "任务"
       },
       {
-        "pagePath": "pages/statistics/statistics",
+        "pagePath": "pages/trend/trend",
         "iconPath": "images/buttons/trend.png",
         "selectedIconPath": "images/buttons/trendGL.png",
         "text": "统计"

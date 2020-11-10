@@ -40,7 +40,7 @@
 			<text class="text color-red">-￥{{dayFineSports}}</text>
 		</view>
 	</view>
-  <view class="form">
+	<view class="form">
 		<view class="row">
 			<label for="">额外奖励</label>
 		</view>

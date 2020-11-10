@@ -1,27 +1,21 @@
-<view class="container">
-	<view style="margin-top: 30px;display:flex;justify-content: center;align-items: center;">
-		<label for="">累计收入</label>
+<view class="header">
+	<view style="display:flex;justify-content: center;align-items: center;">
+		<label class="text">累计收入</label>
 		<text class="text">￥{{totalIncome}}</text>
 	</view>
-
+</view>
+<view class="divLine"></view>
+<view class="container">
 	<canvas canvas-id="pieCanvas" class="canvas"></canvas>
 	<view class="form">
-
 		<view class="row">
 			<input type='number' style="display:flex; width:200rpx;" placeholder="输入提现金额" bindinput="getInputMoney" value='{{inputMoney}}'></input>
-			<image style="height: 30px; width: 30px;" mode="aspectFill" src="../../images/buttons/cash.png" bindtap="cash"></image>
+			<image style="height: 35px; width: 35px;" mode="aspectFill" src="../../images/buttons/cash.png" bindtap="cash"></image>
 		</view>
 
 		<view class="row">
 			<label for="">查看收入流水</label>
 			<image style="height: 30px; width: 30px;" mode="aspectFill" src="../../images/buttons/bill.png" bindtap="bill"></image>
 		</view>
-		<!-- <view class="row">
-			<label for="">可提现金额</label>
-			<text class="text">500元</text>
-		</view> -->
 	</view>
-	<!-- <view style="display:flex;justify-content: center;align-items: center;margin-top: auto; margin-bottom: auto;">
-		<image style="height: 90px; width: 90px;" mode="aspectFill" src="../../images/buttons/cashout.png" bindtap="cashout"></image>
-	</view> -->
 </view>

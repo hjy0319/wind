@@ -6,7 +6,12 @@
 		</view>
 		<view class="row">
 			<label for="">体重</label>
-			<text class="text color-gray">{{weight}} kg</text>
+			<view wx:if="{{weight == null}}">
+				<text class="text color-gray">-</text>
+			</view>
+			<view wx:else>
+				<text class="text color-gray">{{weight}} kg</text>
+			</view>
 		</view>
 
 		<view class="row">
@@ -68,10 +73,10 @@
 		<view class="row">
 			<label for="">评分 </label>
 			<text class="text">
-				<text wx:if="{{grade == null || grade == 0}}"> 😡</text>
-				<block wx:for="{{grade}}" wx:key="star">
-					<text>😊</text>
-				</block>
+				<text wx:if="{{grade == null || grade == 0}}"> 😭</text>
+			<block wx:for="{{grade}}" wx:key="star">
+				<text>😊</text>
+			</block>
 			</text>
 			<!-- <text class="text">⭐️⭐️⭐️⭐️⭐️</text> -->
 		</view>
@@ -96,12 +101,4 @@
 			</view>
 		</view>
 	</view>
-	<!-- <view class="tag">
-		<view wx:if="{{dietMealDay == true}}">
-			<image style="width:35px;height:35px;" mode="aspectFill" src="../../images/tags/dietMeal.png"></image>
-		</view>
-		<view wx:if="{{sportsDay == true}}">
-			<image style="width:35px;height:35px;" mode="aspectFill" src="../../images/tags/sports.png"></image>
-		</view>
-	</view> -->
 </view>

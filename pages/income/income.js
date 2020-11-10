@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userCode: app.globalData.userCode,
+    needReload: true,
     inputMoney: '',
     totalIncome: 0,
     restMoney: 0
@@ -18,27 +18,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    that.init();
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+    if (app.checkLogin(app.globalData.userInfo)) {
+      this.init();
+      this.setData({
+        needReload: false
+      });
+    } else {
+      this.setData({
+        needReload: true
+      });
+    }
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (app.checkLogin(app.globalData.userInfo) && this.data.needReload) {
+      this.init();
+      this.setData({
+        needReload: false
+      });
+    }
   },
 
   init: function () {
     var that = this;
-    app.wxRequest('GET', '/income/toIncome?userCode=' + that.data.userCode, null, (res) => {
+    app.wxRequest('GET', '/income/toIncome?userCode=' + app.globalData.userCode, null, (res) => {
       if (res.status == 'success') {
         if (res.data != null) {
           that.initPie(
@@ -129,15 +135,16 @@ Page({
       success: function (res) {
         if (res.confirm) {
           var param = {
-            userCode: that.data.userCode,
+            userCode: app.globalData.userCode,
             money: money
           };
           app.wxRequest('POST', '/income/cash', param, (res) => {
 
             if (res.status == 'success') {
-
-              app.wxShowToast('提现成功', 'success', 2000);
-              that.init();
+              app.wxShowToast('提现成功', 'success', 3000);
+              setTimeout(function () {
+                that.init();
+              }, 2000);
             } else {
               app.wxShowToast('提现失败', 'none', 2000);
             }

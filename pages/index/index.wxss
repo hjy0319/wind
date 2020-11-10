@@ -1,4 +1,34 @@
-/**index.wxss**/
+.header {
+  position: fixed;
+  top: 0rpx;
+  width: 750rpx;
+  height: 300rpx;
+  flex-wrap: nowrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location {
+  height: 80rpx;
+  font-size: 45rpx;
+  font-weight: 700;
+  margin-left: 10px;
+  color: #696969;
+}
+
+.temperature {
+  height: 100%;
+  font-size: 120rpx;
+  font-weight: 900;
+  margin-left: 20px;
+  
+}
+.weather{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
 .container {
   height: 100%;
   display: flex;
@@ -7,12 +37,13 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 200rpx; 
+  margin-top: 200rpx;
 }
 
 .userinfo-avatar {
@@ -55,13 +86,15 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
 .dialog .modal-title {
   height: 90.3%;
   width: 100%;
   font-size: 45rpx;
   font-weight: 900;
-  color: 	#0000CD;
+  color: #0000CD;
 }
+
 .dialog .modal-item {
   height: 75.3%;
   width: 100%;
